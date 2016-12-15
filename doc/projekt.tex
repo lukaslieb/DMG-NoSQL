@@ -1,0 +1,96 @@
+\documentclass[ngerman, 12pt,a4paper]{article}
+
+\usepackage[ngerman]{babel}
+
+% formatting
+\usepackage[left=3cm, right=3cm, top=3cm, bottom=3cm]{geometry}
+
+% package for nonstandard letters (umlauts etc)
+\usepackage[utf8]{inputenc} 
+
+%% Mathematics
+\usepackage{amsmath,amsfonts, latexsym, amssymb}
+
+%% Graphics
+\usepackage{graphicx}
+
+%% For nice tables
+\usepackage{booktabs}
+
+%% Line spacing
+\renewcommand{\baselinestretch}{1.5}
+
+%% Bibliography
+\usepackage{natbib}
+
+%% to avoid messy linebreaks
+\sloppy
+
+
+\begin{document}
+
+\include{title}
+
+\include{abstract}
+
+
+
+
+
+
+
+
+%%%%%%%%%%Table of contents %%%%%%%%%%%%%%%
+\tableofcontents
+\newpage
+%%%%%%%%End: Table of contents %%%%%%%%%%%%
+
+\listoffigures
+\newpage
+\listoftables
+\newpage
+
+
+
+\section{Einführung}
+
+Überführung der relationale Datenbank in eine NoSQL Datenbank
+MongoDB
+\section{Datenmanagement}
+Welche Anwendung (Use Case) unterstützt ihre Datenbank?
+
+Welche Daten werden integriert migriert
+ und wie werden sie 
+aufbereitet?
+Wie interagiert der Benutzer mit der Datenbank?
+
+\section{Datenmodellierung}
+Welches Datenmodell  (ER) iegt ihrem Projekt zugrunde?
+Wie wird  ihr Datenmodell in Ihrer Datenbank in ein Schema übersetzt?
+ \section{Datenbanksprachen}
+ 
+ \section{Konsistenzsicherung}
+ 
+ \section{Systemarchitektur}
+
+\section{Verleich mit relationalen Datenbanken}
+
+\section{Schlussfolgerungen}
+
+
+ %%%%%%%%%%%Bibliography%%%%%%%%%%%
+\newpage
+% to have more compact display of references
+\setlength{\bibsep}{0pt}
+% choose a bibliography style, e.g. aer for American Economic Review
+% or ecta for Econometrica, etc. 
+\bibliographystyle{aer}
+% enter the name of your jabref file
+\bibliography{myreferences}
+\newpage
+
+%%%%%%%%%%%Anhang%%%%%%%%%%%%%
+\include{appendix}
+
+
+\end{document}
