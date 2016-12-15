@@ -5,6 +5,8 @@
  */
 package ch.hslu.dmg;
 
+import com.mongodb.BasicDBList;
+import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
@@ -24,6 +26,7 @@ public class InitDB {
         initStuds();
         initVorlesungen();
         initAssistenten();
+        initPruefen();
         
         //MongoCollection<Document> prof = database.getCollection("professoren");
 
@@ -38,6 +41,7 @@ public class InitDB {
         MongoClient mongo = new MongoClient( "localhost" , 27017 );
         MongoDatabase database = mongo.getDatabase("unidb");
         MongoCollection<Document> prof = database.getCollection("professoren");
+        prof.drop();
         
         ArrayList<Document> profs = new ArrayList<>();
         profs.add(new Document("PersNr", 2125)
@@ -77,32 +81,50 @@ public class InitDB {
         MongoClient mongo = new MongoClient( "localhost" , 27017 );
         MongoDatabase database = mongo.getDatabase("unidb");
         MongoCollection<Document> stud = database.getCollection("studenten");
+        stud.drop();
         
         ArrayList<Document> studs = new ArrayList<>();
         studs.add(new Document("Legi", 24002)
-               .append("Name", "Xenokrates")
-               .append("Semester", 18));
-        studs.add(new Document("Legi", 24002)
-               .append("Name", "Jonas")
-               .append("Semester", 12));
-        studs.add(new Document("Legi", 24002)
-               .append("Name", "Fichte")
-               .append("Semester", 10));
-        studs.add(new Document("Legi", 24002)
-               .append("Name", "Aristoxenos")
-               .append("Semester", 8));
-        studs.add(new Document("Legi", 24002)
-               .append("Name", "Schopenhauer")
-               .append("Semester", 6));
-        studs.add(new Document("Legi", 24002)
-               .append("Name", "Carnap")
-               .append("Semester", 3));
-        studs.add(new Document("Legi", 24002)
-               .append("Name", "Theophrastos")
-               .append("Semester", 2));
-        studs.add(new Document("Legi", 24002)
-               .append("Name", "Feuerbach")
-               .append("Semester", 2));
+                .append("Name", "Xenokrates")
+                .append("Semester", 18));
+        studs.add(new Document("Legi", 25403)
+                .append("Name", "Jonas")
+                .append("Semester", 12));
+        studs.add(new Document("Legi", 26120)
+                .append("Name", "Fichte")
+                .append("Semester", 10)
+                .append("Hoeren", 5001));
+        studs.add(new Document("Legi", 26830)
+                .append("Name", "Aristoxenos")
+                .append("Semester", 8));
+        BasicDBList hoeren = new BasicDBList();
+        hoeren.add(5001);
+        hoeren.add(4052);
+        studs.add(new Document("Legi", 27550)
+                .append("Name", "Schopenhauer")
+                .append("Semester", 6)
+                .append("Hoeren", hoeren));
+        BasicDBList hoeren2 = new BasicDBList();
+        hoeren2.add(5041);
+        hoeren2.add(5052);
+        hoeren2.add(5216);
+        hoeren2.add(5259);
+        studs.add(new Document("Legi", 28106)
+                .append("Name", "Carnap")
+                .append("Semester", 3)
+                .append("Hoeren", hoeren2));
+        BasicDBList hoeren3 = new BasicDBList();
+        hoeren3.add(5001);
+        hoeren3.add(5041);
+        hoeren3.add(5049);
+        studs.add(new Document("Legi", 29120)
+                .append("Name", "Theophrastos")
+                .append("Semester", 2)
+                .append("Hoeren", hoeren3));
+        studs.add(new Document("Legi", 29555)
+                .append("Name", "Feuerbach")
+                .append("Semester", 2)
+                .append("Hoeren", 5022));
         stud.insertMany(studs);
         
         mongo.close();
@@ -112,48 +134,57 @@ public class InitDB {
         MongoClient mongo = new MongoClient( "localhost" , 27017 );
         MongoDatabase database = mongo.getDatabase("unidb");
         MongoCollection<Document> vorlesung = database.getCollection("vorlesungen");
+        vorlesung.drop();
         
         ArrayList<Document> vorlesungen = new ArrayList<>();
         vorlesungen.add(new Document("VorlNr", 5001)
-               .append("Titel", "Grundzüge")
-               .append("KP", 4)
-               .append("gelsenVon", 2137));
+                .append("Titel", "Grundzüge")
+                .append("KP", 4)
+                .append("GelesenVon", 2137));
         vorlesungen.add(new Document("VorlNr", 5041)
-               .append("Titel", "Ethik")
-               .append("KP", 4)
-               .append("gelsenVon", 2125));
+                .append("Titel", "Ethik")
+                .append("KP", 4)
+                .append("GelesenVon", 2125)
+                .append("Voraussetzung", 5001));
         vorlesungen.add(new Document("VorlNr", 5043)
-               .append("Titel", "Erkentnistheorie")
-               .append("KP", 3)
-               .append("gelsenVon", 2126));
+                .append("Titel", "Erkentnistheorie")
+                .append("KP", 3)
+                .append("GelesenVon", 2126)
+                .append("Voraussetzung", 5001));
         vorlesungen.add(new Document("VorlNr", 5049)
-               .append("Titel", "Mäeutik")
-               .append("KP", 2)
-               .append("gelsenVon", 2125));
+                .append("Titel", "Mäeutik")
+                .append("KP", 2)
+                .append("GelesenVon", 2125)
+                .append("Voraussetzung", 5001));
         vorlesungen.add(new Document("VorlNr", 4052)
-               .append("Titel", "Logik")
-               .append("KP", 4)
-               .append("gelsenVon", 2125));
+                .append("Titel", "Logik")
+                .append("KP", 4)
+                .append("GelesenVon", 2125));
+        BasicDBList voraussetzungen = new BasicDBList();
+        voraussetzungen.add(5043);
+        voraussetzungen.add(5041);
+        vorlesungen.add(new Document("VorlNr", 5052)
+                .append("Titel", "Wissenschaftstheorie")
+                .append("KP", 3)
+                .append("GelesenVon", 2126)
+                .append("Voraussetzung", voraussetzungen)); 
         vorlesungen.add(new Document("VorlNr", 5216)
-               .append("Titel", "Wissenschaftstheorie")
-               .append("KP", 3)
-               .append("gelsenVon", 2126));
+                .append("Titel", "Bioethik")
+                .append("KP", 2)
+                .append("GelesenVon", 2126));
         vorlesungen.add(new Document("VorlNr", 5259)
-               .append("Titel", "Bioethik")
-               .append("KP", 2)
-               .append("gelsenVon", 2126));
+                .append("Titel", "Der Wiener Kreis")
+                .append("KP", 2)
+                .append("GelesenVon", 2133)
+                .append("Voraussetzung", 5052));
         vorlesungen.add(new Document("VorlNr", 5022)
-               .append("Titel", "Der Wiener Kreis")
-               .append("KP", 2)
-               .append("gelsenVon", 2133));
+                .append("Titel", "Glaube und Wissen")
+                .append("KP", 2)
+                .append("GelesenVon", 2134));
         vorlesungen.add(new Document("VorlNr", 4630)
-               .append("Titel", "Glaube und Wissen")
-               .append("KP", 2)
-               .append("gelsenVon", 2134));
-        vorlesungen.add(new Document("VorlNr", 5001)
-               .append("Titel", "Die 3 Kritiken")
-               .append("KP", 4)
-               .append("gelsenVon", 2137));
+                .append("Titel", "Die 3 Kritiken")
+                .append("KP", 4)
+                .append("GelesenVon", 2137));
         
         vorlesung.insertMany(vorlesungen);
         
@@ -164,6 +195,7 @@ public class InitDB {
         MongoClient mongo = new MongoClient( "localhost" , 27017 );
         MongoDatabase database = mongo.getDatabase("unidb");
         MongoCollection<Document> assistent = database.getCollection("assistenten");
+        assistent.drop();
         
         ArrayList<Document> assistenten = new ArrayList<>();
         assistenten.add(new Document("PersNr", 3002)
@@ -192,6 +224,31 @@ public class InitDB {
                .append("Boss", 2126));
         
         assistent.insertMany(assistenten);
+        
+        mongo.close();
+    }
+    
+    public void initPruefen(){
+        MongoClient mongo = new MongoClient( "localhost" , 27017 );
+        MongoDatabase database = mongo.getDatabase("unidb");
+        MongoCollection<Document> pruefungen = database.getCollection("pruefungen");
+        pruefungen.drop();
+        
+        ArrayList<Document> pruefung = new ArrayList<>();
+        pruefung.add(new Document("Legi", 28106)
+               .append("VorlNr", 5001)
+               .append("PersNr", 2126)
+               .append("Note", 1));
+        pruefung.add(new Document("Legi", 25403)
+               .append("VorlNr", 5041)
+               .append("PersNr", 2125)
+               .append("Note", 2));
+        pruefung.add(new Document("Legi", 27550)
+               .append("VorlNr", 4630)
+               .append("PersNr", 2137)
+               .append("Note", 2));
+        
+        pruefungen.insertMany(pruefung);
         
         mongo.close();
     }
