@@ -6,13 +6,10 @@
 package ch.hslu.dmg;
 
 import com.mongodb.BasicDBList;
-import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import static com.mongodb.client.model.Filters.eq;
 import java.util.ArrayList;
-import java.util.List;
 import org.bson.Document;
 
 /**
@@ -27,14 +24,10 @@ public class InitDB {
         initVorlesungen();
         initAssistenten();
         initPruefen();
-        
-        //MongoCollection<Document> prof = database.getCollection("professoren");
-
-        
-        //collection.insertOne(doc);
-        //collection.deleteOne(eq("name", "Test"));
-        //Document myDoc = collection.find().first();
-        //System.out.println(myDoc.toJson());
+    }
+    
+    public static void main(String[] args) {
+        new InitDB().initDB();
     }
     
     public void initProfs(){
@@ -46,31 +39,31 @@ public class InitDB {
         ArrayList<Document> profs = new ArrayList<>();
         profs.add(new Document("PersNr", 2125)
                .append("Name", "Sokrates")
-               .append("Rang", "FP")
+               .append("Rang", "C4")
                .append("Raum", 226));
         profs.add(new Document("PersNr", 2126)
                .append("Name", "Russel")
-               .append("Rang", "FP")
+               .append("Rang", "C4")
                .append("Raum", 232));
         profs.add(new Document("PersNr", 2127)
                .append("Name", "Kopernikus")
-               .append("Rang", "AP")
+               .append("Rang", "C3")
                .append("Raum", 310));
         profs.add(new Document("PersNr", 2133)
                .append("Name", "Popper")
-               .append("Rang", "AP")
+               .append("Rang", "C3")
                .append("Raum", 52));
         profs.add(new Document("PersNr", 2134)
                .append("Name", "Augustinus")
-               .append("Rang", "AP")
+               .append("Rang", "C3")
                .append("Raum", 309));
         profs.add(new Document("PersNr", 2136)
                .append("Name", "Curie")
-               .append("Rang", "FP")
+               .append("Rang", "C4")
                .append("Raum", 36));
         profs.add(new Document("PersNr", 2137)
                .append("Name", "Kant")
-               .append("Rang", "FP")
+               .append("Rang", "C4")
                .append("Raum", 7));
         prof.insertMany(profs);
         
@@ -89,7 +82,8 @@ public class InitDB {
                 .append("Semester", 18));
         studs.add(new Document("Legi", 25403)
                 .append("Name", "Jonas")
-                .append("Semester", 12));
+                .append("Semester", 12)
+                .append("Hoeren", 5022));
         studs.add(new Document("Legi", 26120)
                 .append("Name", "Fichte")
                 .append("Semester", 10)
@@ -121,10 +115,13 @@ public class InitDB {
                 .append("Name", "Theophrastos")
                 .append("Semester", 2)
                 .append("Hoeren", hoeren3));
+        BasicDBList hoeren4 = new BasicDBList();
+        hoeren4.add(5022);
+        hoeren4.add(5001);
         studs.add(new Document("Legi", 29555)
                 .append("Name", "Feuerbach")
                 .append("Semester", 2)
-                .append("Hoeren", 5022));
+                .append("Hoeren", hoeren4));
         stud.insertMany(studs);
         
         mongo.close();
@@ -139,51 +136,52 @@ public class InitDB {
         ArrayList<Document> vorlesungen = new ArrayList<>();
         vorlesungen.add(new Document("VorlNr", 5001)
                 .append("Titel", "Grundzüge")
-                .append("KP", 4)
+                .append("SWS", 4)
                 .append("GelesenVon", 2137));
         vorlesungen.add(new Document("VorlNr", 5041)
                 .append("Titel", "Ethik")
-                .append("KP", 4)
+                .append("SWS", 4)
                 .append("GelesenVon", 2125)
                 .append("Voraussetzung", 5001));
         vorlesungen.add(new Document("VorlNr", 5043)
                 .append("Titel", "Erkentnistheorie")
-                .append("KP", 3)
+                .append("SWS", 3)
                 .append("GelesenVon", 2126)
                 .append("Voraussetzung", 5001));
         vorlesungen.add(new Document("VorlNr", 5049)
-                .append("Titel", "Mäeutik")
-                .append("KP", 2)
+                .append("Titel", "Maeeutik")
+                .append("SWS", 2)
                 .append("GelesenVon", 2125)
                 .append("Voraussetzung", 5001));
         vorlesungen.add(new Document("VorlNr", 4052)
                 .append("Titel", "Logik")
-                .append("KP", 4)
+                .append("SWS", 4)
                 .append("GelesenVon", 2125));
         BasicDBList voraussetzungen = new BasicDBList();
         voraussetzungen.add(5043);
         voraussetzungen.add(5041);
         vorlesungen.add(new Document("VorlNr", 5052)
                 .append("Titel", "Wissenschaftstheorie")
-                .append("KP", 3)
+                .append("SWS", 3)
                 .append("GelesenVon", 2126)
                 .append("Voraussetzung", voraussetzungen)); 
         vorlesungen.add(new Document("VorlNr", 5216)
                 .append("Titel", "Bioethik")
-                .append("KP", 2)
-                .append("GelesenVon", 2126));
+                .append("SWS", 2)
+                .append("GelesenVon", 2126)
+                .append("Voraussetzung", 5041));
         vorlesungen.add(new Document("VorlNr", 5259)
                 .append("Titel", "Der Wiener Kreis")
-                .append("KP", 2)
+                .append("SWS", 2)
                 .append("GelesenVon", 2133)
                 .append("Voraussetzung", 5052));
         vorlesungen.add(new Document("VorlNr", 5022)
                 .append("Titel", "Glaube und Wissen")
-                .append("KP", 2)
+                .append("SWS", 2)
                 .append("GelesenVon", 2134));
         vorlesungen.add(new Document("VorlNr", 4630)
                 .append("Titel", "Die 3 Kritiken")
-                .append("KP", 4)
+                .append("SWS", 4)
                 .append("GelesenVon", 2137));
         
         vorlesung.insertMany(vorlesungen);
@@ -221,7 +219,7 @@ public class InitDB {
         assistenten.add(new Document("PersNr", 3007)
                .append("Name", "Spinoza")
                .append("Fachgebiet", "Gott und Natur")
-               .append("Boss", 2126));
+               .append("Boss", 2134));
         
         assistent.insertMany(assistenten);
         
