@@ -9,8 +9,10 @@ import com.mongodb.BasicDBList;
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import static com.mongodb.client.model.Filters.*;
 import java.util.ArrayList;
 import org.bson.Document;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -141,40 +143,31 @@ public class InitDB {
         vorlesungen.add(new Document("VorlNr", 5041)
                 .append("Titel", "Ethik")
                 .append("SWS", 4)
-                .append("GelesenVon", 2125)
-                .append("Voraussetzung", 5001));
+                .append("GelesenVon", 2125));
         vorlesungen.add(new Document("VorlNr", 5043)
                 .append("Titel", "Erkentnistheorie")
                 .append("SWS", 3)
-                .append("GelesenVon", 2126)
-                .append("Voraussetzung", 5001));
+                .append("GelesenVon", 2126));
         vorlesungen.add(new Document("VorlNr", 5049)
                 .append("Titel", "Maeeutik")
                 .append("SWS", 2)
-                .append("GelesenVon", 2125)
-                .append("Voraussetzung", 5001));
+                .append("GelesenVon", 2125));
         vorlesungen.add(new Document("VorlNr", 4052)
                 .append("Titel", "Logik")
                 .append("SWS", 4)
                 .append("GelesenVon", 2125));
-        BasicDBList voraussetzungen = new BasicDBList();
-        voraussetzungen.add(5043);
-        voraussetzungen.add(5041);
         vorlesungen.add(new Document("VorlNr", 5052)
                 .append("Titel", "Wissenschaftstheorie")
                 .append("SWS", 3)
-                .append("GelesenVon", 2126)
-                .append("Voraussetzung", voraussetzungen)); 
+                .append("GelesenVon", 2126)); 
         vorlesungen.add(new Document("VorlNr", 5216)
                 .append("Titel", "Bioethik")
                 .append("SWS", 2)
-                .append("GelesenVon", 2126)
-                .append("Voraussetzung", 5041));
+                .append("GelesenVon", 2126));
         vorlesungen.add(new Document("VorlNr", 5259)
                 .append("Titel", "Der Wiener Kreis")
                 .append("SWS", 2)
-                .append("GelesenVon", 2133)
-                .append("Voraussetzung", 5052));
+                .append("GelesenVon", 2133));
         vorlesungen.add(new Document("VorlNr", 5022)
                 .append("Titel", "Glaube und Wissen")
                 .append("SWS", 2)
@@ -185,7 +178,23 @@ public class InitDB {
                 .append("GelesenVon", 2137));
         
         vorlesung.insertMany(vorlesungen);
-        
+
+        vorlesung.updateOne(eq("VorlNr",5041), new Document("$set",  
+                new Document("Voraussetzung", vorlesung.find(eq("VorlNr", 5001)).iterator().next().get("_id"))));
+        vorlesung.updateOne(eq("VorlNr",5043), new Document("$set",  
+                new Document("Voraussetzung", vorlesung.find(eq("VorlNr", 5001)).iterator().next().get("_id"))));
+        vorlesung.updateOne(eq("VorlNr",5049), new Document("$set",  
+                new Document("Voraussetzung", vorlesung.find(eq("VorlNr", 5001)).iterator().next().get("_id"))));
+        vorlesung.updateOne(eq("VorlNr",5216), new Document("$set",  
+                new Document("Voraussetzung", vorlesung.find(eq("VorlNr", 5041)).iterator().next().get("_id"))));
+        vorlesung.updateOne(eq("VorlNr",5259), new Document("$set",  
+                new Document("Voraussetzung", vorlesung.find(eq("VorlNr", 5052)).iterator().next().get("_id"))));
+        BasicDBList voraussetzungen = new BasicDBList();
+        voraussetzungen.add(vorlesung.find(eq("VorlNr", 5043)).iterator().next().get("_id"));
+        voraussetzungen.add(vorlesung.find(eq("VorlNr", 5041)).iterator().next().get("_id"));
+        vorlesung.updateOne(eq("VorlNr",5052), new Document("$set",  
+                new Document("Voraussetzung", voraussetzungen)));
+
         mongo.close();
     }
     
