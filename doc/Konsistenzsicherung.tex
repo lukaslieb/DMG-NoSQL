@@ -1,1 +1,46 @@
  \section{Konsistenzsicherung}
+ Bei relationalen Datenbanken bietet die Datenbank Mechanismen zur
+ Konsistenzsicherung an. Dies wird durch verschiedene Eigenschaften im RDBMS
+ erreicht. Jeder Tabelle liegt ein Schema zu Grunde. In diesem wird defniniert,
+ wie die Daten strukturiert sein müssen. Zum Beispiel wird festgelegt, welches
+ der Primärschlüssel ist, ob Felder ``null'' sein dürfen, oder ob Tupel gelöscht
+ werden dürfen, wenn noch Referenzen darauf zeigen.
+ MongoDB ist Schema frei. Das Bedeutet, dass sich je zwei Dokumente in einer
+Sammplung  komplett in ihrer Struktur voneinander unterscheiden können.
+ Desweitern garantiert MongoDB keine integrität der Referenzen. Dies wird klar,
+ wenn man verlgeicht, welchen Regeln die relationale Datenbank und die MognoDB
+ unterliegen.
+ RDBMS unterliegen den ACID regeln. 
+ \begin{itemize}
+   \item Atomar: Die gesamte Transaktion wird ausgeführt oder die Transaktion
+   wird rückgängig gemacht.
+   \item Consistent: Nach jeder Transaktion muss die Datenbank widerspruchsfrei
+   sein.
+   \item Isolatet: Bei einer Transaktion dürfen keine Seiteneffekte
+   auftretreten. Dies garantiert, dass eim Mehrbenutzerbetrieb möglich ist.
+   \item Dauerhaft: Die Daten werden sicher gespeichert, auch bei
+   Systemabstürzen. Bei einem Systemabsturz wird ein recovery durchgeführt, so 
+   dass danach die Datenbank wieder in einem konsistenten Zustand ist.
+ \end{itemize}
+ Die in unserem Projekt eingesetzte MongoDB unterliegt den BASE Regeln.
+ \begin{itemize}
+   \item Basically Available: Die Datenbank sollte meistens laufen.
+   \item Eventually Consistent: Die Konsistenz der Daten wird nicht unmittelbar
+   nach der Operation gewährleistet. Sie kann verzögert eintreten.
+\end{itemize}
+Da MongoDB keine Transaktionen(eine Folge von Operationen, die Atomar
+ausgeführt werden)) unterstützt, muss diese Funktionalität auf der
+Anwendungsebe implementiert werden. Dies ist beim Einsatz eines RDBMS nicht notwendig,
+da dieses Transaktionen unterstützt. In unserem Fall werden keine
+Transaktionen verwendet, da nur lesend auf die Daten zugegriffen werden.
+Da nur gelesen wird, und keine Daten geändert oder hinzugegügt/entfernt werden,
+kann die Datenbank durch Operationen nicht in einen inkonsistenen Zustand
+überführt werden. Deswegen kann auch parallel auf die Datenzugegriffen
+werden ohne die Konsistzen zu verlieren. Sollen zu einem späteren Zeitpunkt zur
+Laufzeit der Anwendung Daten geändert oder hinzugefügt/entfernt werden,
+ so muss eine Konsistenzsicherung auf der Anwendungsebene  implementiert werden.
+
+
+ 
+
+		
