@@ -8,20 +8,6 @@ Anschliessend setzt man das vorgegebene Querry (siehe Aufgabenstellung) so um, d
 \newpage
 \subsection{Datenbankauswahl}
 Bei der Auswahl der Datenbank haben wir uns für Die MongoDB entschieden. Entscheidend waren dabei folgende Gründe:
-=======
-Im Modul DMG wurde zu Übungszwecken zu relationalen Datenbanken die Uni-DB 
-verwendet. Das dabei verwendete Entity-Relation Diagramm ist in Abbildung
-\ref{fig:uni-db} ersichtlich.
-\begin{figure}[htbp] 
-  \centering
-     \includegraphics[width=1\textwidth]{./pictures/SQL-DB_ER_Diagramm_UNI-DB.png}
-  \caption{ER-Diagramm zur Uni-DB \cite{Kaufmann2016_S1}}
-  \label{fig:uni-db}
-\end{figure}
- Um mit den NoSQL Datenbanken Erfahrung zu sammeln, wird dieses Schema in die NoSQL Datenbank MongoDB überführt.
-Die MongoDB ist eine dokumentorientierte Datenbank und  wird aus folgenden
-Gründen für dieses Projekt verwendet:
->>>>>>> 19b6044aca54f9cb01a825d558cf3a193f181206
 \begin{itemize}
   \item Geeignet um unser Problem zu lösen.
   \item Wird in der Praxis eingesetzt
@@ -60,28 +46,3 @@ Ebenfalls soll es möglich sein, auf Kosten der Konsistenz (Consistency) die Ver
 %group by p.Name 
 %) B using(ProfessorName)
 %\end{lstlisting}
-=======
-Die Aufgabe besteht darin, ein vorgegeben SQL-Query so in MongoDB Operationen
-abzubilden, dass die MonogDB Abfrage das selbe Resultat ergibt wie das folgende 
-SQL-Query
-\begin{lstlisting}
-select ProfessorName, AnzahlStudenten, SummeSWS 
-from ( 
-	select p.Name as ProfessorName, count(s.MatrNr) 
-	as AnzahlStudenten 
-		from Professoren p 
-		join Vorlesungen v on v.gelesenVon = p.PersNr
-		join hoeren h on h.VorlNr = v.VorlNr 
-		join Studenten s on s.MatrNr = h.MatrNr 
-		group by p.Name 
-	) A 
-join 
-( 
-	select p.Name as ProfessorName,  sum(SWS) 
-	as summeSWS 
-	from Professoren p 
-	join Vorlesungen v on v.gelesenVon = p.PersNr 
-	group by p.Name 
-) B using(ProfessorName)
-\end{lstlisting}
->>>>>>> 19b6044aca54f9cb01a825d558cf3a193f181206
