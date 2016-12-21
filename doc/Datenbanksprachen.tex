@@ -4,11 +4,10 @@ MongoDB bietet verschiedene Möglichkeiten um Daten hinzuzufügen oder zu manipu
  
 Da für diese Arbeit ein Programm in Java geschrieben wurde, kam der aktuelle mongo-java-driver in der Version 3.4.0 zum Einsatz. Allerdings sind die Kommandos für die Interaktion mit den Daten nicht sehr unterschiedlich zum normalen Kommandofenster. Nach der Wahl der Datenbank kann im Java Treiber  die entsprechende Collection ausgewählt und dieser anschliessend Dokumente hinzugefügt werden:
  
-\begin{lstlisting}[basicstyle=\tiny]
+\begin{lstlisting}[basicstyle=\scriptsize]
 MongoClient mongo = new MongoClient( "localhost" , 27017 );
 MongoDatabase database = mongo.getDatabase("unidb");
-MongoCollection<Document> stud = database
-	.getCollection("studenten");
+MongoCollection<Document> stud = database.getCollection("studenten");
 stud.drop();
 studs.insertOne(new Document("Legi", 25403)
 	.append("Name", "Jonas")
@@ -19,8 +18,31 @@ mongo.close();
 
 So wurde für die Testdaten ein Javaprogramm erstellt, dass alle Daten der UniDB in entsprechende Collections der MongoDB schreibt.
 
-Für die Erwähnte Query, die in der Einführung bereits erwähnt wurde, wurde ein
-separate Funktion geschrieben, die die Daten aus der Datenbank holt und aneinanderhängt. Darin wird für jeden Professor nachgeschlagen, welche Vorlesungen dieser hält. Anhand dieser wird die Anzahl SWS Punkte ermittelt, die der Professor unterrichtet. Zusätzlich wird gezählt, wie viele Studenten dieser Vorlesungen zuhören. Wenn die Query in MySQL ausgeführt wird, ist das Resultat folgendes:
+Für die Erwähnte Query, die in der Einführung bereits erwähnt wurde, wurde eine separate Funktion geschrieben, die die Daten aus der Datenbank holt und aneinanderhängt. Der Join wird bei den zwei for-Schleifen ausgeführt. Darin wird für jeden Professor nachgeschlagen, welche Vorlesungen dieser hält. Anhand dieser wird die Anzahl SWS Punkte ermittelt, die der Professor unterrichtet. In der zweiten for-Schleife wird zusätzlich gezählt, wie viele Studenten dieser Vorlesungen zuhören. Die Selektion wird hier bei der Setzung der Anzahl SWS und Studenten zur List aller Professoren ausgeführt (p.setAnzSWS(swsCounter) und p.setAnzStud(studCounter)). 
+
+\begin{lstlisting}[basicstyle=\scriptsize]
+MongoClient mongo = new MongoClient( "localhost" , 27017 );
+MongoDatabase database = mongo.getDatabase("unidb");
+MongoCollection<Document> prof = database.getCollection("professoren");
+MongoCollection<Document> vorl = database.getCollection("vorlesungen");
+MongoCollection<Document> stud = database.getCollection("studenten");
+
+for (Professor p: professoren){
+	int swsCounter = 0;
+	int studCounter = 0;
+	
+	for(Document dVorl: vorl.find(eq("GelesenVon", p.getPersNr()))){
+		swsCounter += Integer.parseInt(dVorl.get("SWS").toString());
+		for(Document dStud: stud.find(eq("Hoeren", dVorl.get("VorlNr")))){
+			studCounter ++;
+		}
+	}
+	p.setAnzSWS(swsCounter);
+	p.setAnzStud(studCounter);
+}
+\end{lstlisting}
+ 
+Wenn die Query in MySQL ausgeführt wird, werden als Resultat die Anzahl Studenten und die Summe der SWS für jeden Professor angezeigt:
 
 \begin{figure}[h] 
 	\centering
