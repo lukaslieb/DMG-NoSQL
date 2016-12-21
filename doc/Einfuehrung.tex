@@ -1,8 +1,8 @@
 \section{Einführung}
 
 \subsection{Aufgabenstellung}
-Ziel dieser Arbeit ist es, die Uni-DB, welche auf einer SQL Server liegt, in eine NoSQL-Datenbank zu implementieren. Dazu Wird das ER-Schema der Uni-DB so umgezeichnet werden, dass es in der gewählten NoSQL-Datenbank abgebildet werden kann. Dieses Schema wird dann in der entsprechend gewählten Datenbank umgesetzt. Dazu migriert man die Daten aus der SQL- in die NoSQL-Datenbank.
-Zusätzlich wird dem Benutzer eine Möglichkeit geboten werden, mithilfe eines GUI folgendes SQL-Querry auf der MongoDB abzufragen:
+Ziel dieser Arbeit ist es, die Uni-DB, welche auf einem SQL Server liegt, in eine NoSQL-Datenbank zu implementieren. Dazu wird das ER-Schema der Uni-DB so umgezeichnet, dass es in der gewählten NoSQL-Datenbank abgebildet werden kann. Dieses Schema wird dann in der entsprechend gewählten Datenbank umgesetzt. Dazu migriert man die Daten aus der SQL- in die NoSQL-Datenbank.
+Zusätzlich wird dem Benutzer eine Möglichkeit geboten, mit Hilfe eines GUI folgende SQL-Querry auf der MongoDB abzufragen:
 
 
 \lstinputlisting{sourcecode/SQLQuerry.cpp}
@@ -29,7 +29,7 @@ Zusätzlich wird dem Benutzer eine Möglichkeit geboten werden, mithilfe eines G
 
 \newpage
 \subsection{Datenbankauswahl}
-Bei der Auswahl der Datenbank haben wir uns für Die MongoDB entschieden. Entscheidend waren dabei folgende Gründe:
+Bei der Auswahl der Datenbank haben wir uns für die MongoDB entschieden. Ausschlaggebend waren dabei folgende Gründe:
 \begin{itemize}
   \item Geeignet um unser Problem zu lösen.
   \item Wird in der Praxis eingesetzt
@@ -40,8 +40,8 @@ Bei der Auswahl der Datenbank haben wir uns für Die MongoDB entschieden. Entsch
   \item Erste Erfahrung vorhanden
 \end{itemize}
 
-Die MongoDB ist eine Datenbank, welche sich grundlegend im CAP Theorem in der Spalte CP aufhält. Dies bedeutet, dass die Konsitenz (Consistency) gewährleistet ist. Dies wird realisiert, indem in einem System ein Knoten als primäres Mitglied fungiert, und alle Anfragen über diesen Knoten abgearbeitet werden. Zusätzlich wird die Partition-Tolerance gewährleistet. Dies Funktioniert laut Vertreiber, indem wenn der Primäre Knoten ausfällt, automatisch ein sekundärer Knoten als neuer Primärknoten Definiert wird und somit das System wieder funktioniert.
-Ebenfalls soll es möglich sein, auf Kosten der Konsistenz (Consistency) die Verfügbarkeit (Availaility) zu erhöhen, indem man in den Einstellungen die Konfiguration vornimmt, dass Daten nicht bloss über den Primär-Knoten, sondern auch über Sekundärknoten bezogen werden können.
+Die MongoDB ist eine Datenbank, welche sich grundlegend im CAP Theorem in der Spalte CP aufhält. Dies bedeutet, dass die Konsitenz (Consistency) gewährleistet ist. Dies wird realisiert, indem in einem System ein Knoten als primäres Mitglied fungiert und alle Anfragen über diesen Knoten abgearbeitet werden. Zusätzlich wird die Partition-Tolerance gewährleistet. 
+Gemäss Betreiber wird bei einem Ausfall des Primärknotens automatisch ein Sekundärknoten zum neuen Primärknoten definiert und somit eine einwandfreie Funktion gewährleistet. Ebenfalls soll es möglich sein, auf Kosten der Konsistenz (Consistency) die Verfügbarkeit (Availability) zu erhöhen, indem man in den Einstellungen die Konfiguration vornimmt, dass Daten nicht bloss über den Primär-Knoten, sondern auch über Sekundärknoten bezogen werden können.
 
 
 

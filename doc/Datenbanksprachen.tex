@@ -19,7 +19,7 @@ mongo.close();
 
 So wurde für die Testdaten ein Javaprogramm erstellt, dass alle Daten der UniDB in entsprechende Collections der MongoDB schreibt.
 
-Für die Erwähnte Query, die in der Einführung bereits erwähnt wurde, wurde eine separate Funktion geschrieben, die die Daten aus der Datenbank holt und aneinanderhängt. Der Join wird bei den zwei for-Schleifen ausgeführt. Darin wird für jeden Professor nachgeschlagen, welche Vorlesungen dieser hält. Anhand dieser wird die Anzahl SWS Punkte ermittelt, die der Professor unterrichtet. In der zweiten for-Schleife wird zusätzlich gezählt, wie viele Studenten dieser Vorlesungen zuhören. Die Selektion wird hier bei der Setzung der Anzahl SWS und Studenten zur List aller Professoren ausgeführt (p.setAnzSWS(swsCounter) und p.setAnzStud(studCounter)). 
+Für die Erwähnte Query, die in der Einführung bereits erwähnt wurde, wurde eine separate Funktion geschrieben, die die Daten aus der Datenbank holt und aneinanderhängt. Der Join wird bei den zwei for-Schleifen ausgeführt. Darin wird für jeden Professor nachgeschlagen, welche Vorlesungen dieser hält. Anhand dieser wird die Anzahl SWS Punkte ermittelt, die der Professor unterrichtet. In der zweiten for-Schleife wird zusätzlich gezählt, wie viele Studenten dieser Vorlesungen zuhören. Die Selektion wird hier bei der Setzung der Anzahl SWS und Studenten zur Liste aller Professoren ausgeführt (p.setAnzSWS(swsCounter) und p.setAnzStud(studCounter)). 
 
 \begin{lstlisting}[basicstyle=\scriptsize]
 MongoClient mongo = new MongoClient( "localhost" , 27017 );
