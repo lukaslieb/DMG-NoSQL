@@ -1,24 +1,27 @@
 \section{Einführung}
 Im Modul DMG wurde zu Übungszwecken zu relationalen Datenbanken die Uni-DB 
-verwendet. Das dabei verwendete Entity-Relation Diagramm sieht folgendermassen
-aus:
+verwendet. Das dabei verwendete Entity-Relation Diagramm ist in Abbildung
+\ref{fig:uni-db} ersichtlich.
 \begin{figure}[htbp] 
   \centering
      \includegraphics[width=1\textwidth]{./pictures/SQL-DB_ER_Diagramm_UNI-DB.png}
-  \caption{ER-Diagramm zur Uni-DB \cite{Kaufmann2016}}
+  \caption{ER-Diagramm zur Uni-DB \cite{Kaufmann2016_S1}}
   \label{fig:uni-db}
 \end{figure}
  Um mit den NoSQL Datenbanken Erfahrung zu sammeln, wird dieses Schema in die NoSQL Datenbank MongoDB überführt.
-Die MongoDB als wird aus folgenden Gründen verwendet:
+Die MongoDB ist eine dokumentorientierte Datenbank und  wird aus folgenden
+Gründen für dieses Projekt verwendet:
 \begin{itemize}
+  \item Geeignet um unser Problem zu lösen.
   \item Wird in der Praxis eingesetzt
   \item Gute Dokumentation
   \item Kostenfrei
   \item Untstützung durch Forenuser
   \item Erste Erfahrung vorhanden
 \end{itemize}
-An die MonogDB wird eine Abfrage definiert, welche das selbe Resultat ergibt,
-wie das folgende SQL-Query:
+Die Aufgabe besteht darin, ein vorgegeben SQL-Query so in MongoDB operationen
+abzubilden, dass die MonogDB Abfrage das selbe Resultat ergibt wie das folgende 
+SQL-Query
 \begin{lstlisting}
 select ProfessorName, AnzahlStudenten, SummeSWS 
 from ( 
@@ -39,4 +42,3 @@ join
 	group by p.Name 
 ) B using(ProfessorName)
 \end{lstlisting}
-
