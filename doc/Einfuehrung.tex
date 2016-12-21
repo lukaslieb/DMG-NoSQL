@@ -1,31 +1,11 @@
 \section{Einführung}
-<<<<<<< HEAD
 
 \subsection{Aufgabenstellung}
 Ziel dieser Arbeit ist es, die Uni-DB, welche auf einer SQL Server liegt, in eine NoSQL-Datenbank zu implementieren. Dazu Wird das ER-Schema der Uni-DB so umgezeichnet werden, dass es in der gewählten NoSQL-Datenbank abgebildet werden kann. Dieses Schema wird dann in der entsprechend gewählten Datenbank umgesetzt. Dazu migriert man die Daten aus der SQL- in die NoSQL-Datenbank.
-Anschliessend setzt man das vorgegebene Querry (siehe Aufgabenstellung) so um, dass es in der entsprechend gewählten Datenbank benutzt werden kann. Dazu schreibt man eine Abfrage oder erstellt ein einfaches GUI.
-
-\newpage
-\subsection{Datenbankauswahl}
-Bei der Auswahl der Datenbank haben wir uns für Die MongoDB entschieden. Entscheidend waren dabei folgende Gründe:
-\begin{itemize}
-  \item Geeignet um unser Problem zu lösen.
-  \item Wird in der Praxis eingesetzt
-  \item Bekannt
-  \item Gute Dokumentation
-  \item Kostenlos
-  \item Unterstützung durch Forenuser
-  \item Erste Erfahrung vorhanden
-\end{itemize}
-<<<<<<< HEAD
-
-Die MongoDB ist eine Datenbank, welche sich grundlegend im CAP Theorem in der Spalte CP aufhält. Dies bedeutet, dass die Konsitenz (Consistency) gewährleistet ist. Dies wird realisiert, indem in einem System ein Knoten als primäres Mitglied fungiert, und alle Anfragen über diesen Knoten abgearbeitet werden. Zusätzlich wird die Partition-Tolerance gewährleistet. Dies Funktioniert laut Vertreiber, indem wenn der Primäre Knoten ausfällt, automatisch ein sekundärer Knoten als neuer Primärknoten Definiert wird und somit das System wieder funktioniert.
-Ebenfalls soll es möglich sein, auf Kosten der Konsistenz (Consistency) die Verfügbarkeit (Availaility) zu erhöhen, indem man in den Einstellungen die Konfiguration vornimmt, dass Daten nicht bloss über den Primär-Knoten, sondern auch über Sekundärknoten bezogen werden können.
+Zusätzlich wird dem Benutzer eine Möglichkeit geboten werden, mithilfe eines GUI folgendes SQL-Querry auf der MongoDB abzufragen:
 
 
-%An die MonogDB wird eine Abfrage definiert, welche das selbe Resultat ergibt,
-%wie das folgende SQL-Query:
-%
+\lstinputlisting{sourcecode/SQLQuerry.cpp}
 %\begin{lstlisting}
 %select ProfessorName, AnzahlStudenten, SummeSWS 
 %from ( 
@@ -46,3 +26,22 @@ Ebenfalls soll es möglich sein, auf Kosten der Konsistenz (Consistency) die Ver
 %group by p.Name 
 %) B using(ProfessorName)
 %\end{lstlisting}
+
+\newpage
+\subsection{Datenbankauswahl}
+Bei der Auswahl der Datenbank haben wir uns für Die MongoDB entschieden. Entscheidend waren dabei folgende Gründe:
+\begin{itemize}
+  \item Geeignet um unser Problem zu lösen.
+  \item Wird in der Praxis eingesetzt
+  \item Bekannt
+  \item Gute Dokumentation
+  \item Kostenlos
+  \item Unterstützung durch Forenuser
+  \item Erste Erfahrung vorhanden
+\end{itemize}
+
+Die MongoDB ist eine Datenbank, welche sich grundlegend im CAP Theorem in der Spalte CP aufhält. Dies bedeutet, dass die Konsitenz (Consistency) gewährleistet ist. Dies wird realisiert, indem in einem System ein Knoten als primäres Mitglied fungiert, und alle Anfragen über diesen Knoten abgearbeitet werden. Zusätzlich wird die Partition-Tolerance gewährleistet. Dies Funktioniert laut Vertreiber, indem wenn der Primäre Knoten ausfällt, automatisch ein sekundärer Knoten als neuer Primärknoten Definiert wird und somit das System wieder funktioniert.
+Ebenfalls soll es möglich sein, auf Kosten der Konsistenz (Consistency) die Verfügbarkeit (Availaility) zu erhöhen, indem man in den Einstellungen die Konfiguration vornimmt, dass Daten nicht bloss über den Primär-Knoten, sondern auch über Sekundärknoten bezogen werden können.
+
+
+
