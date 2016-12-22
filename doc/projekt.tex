@@ -25,7 +25,7 @@
 \renewcommand{\baselinestretch}{1.5}
 
 %% Bibliography
-\usepackage{natbib}
+\usepackage{cite}
 
 %% to avoid messy linebreaks
 \sloppy
@@ -43,8 +43,8 @@
 
 \listoffigures
 \newpage
-\listoftables
-\newpage
+%\listoftables
+%\newpage
 
 
 \include{Einfuehrung}
@@ -64,10 +64,7 @@
  %%%%%%%%%%%Bibliography%%%%%%%%%%%
 \newpage
 % to have more compact display of references
-\setlength{\bibsep}{0pt}
-% choose a bibliography style, e.g. aer for American Economic Review
-% or ecta for Econometrica, etc. 
-\bibliographystyle{aer}
+\bibliographystyle{plain}
 % enter the name of your jabref file
 \bibliography{myreferences}
 \newpage
