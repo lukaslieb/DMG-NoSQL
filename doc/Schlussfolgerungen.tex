@@ -1,1 +1,15 @@
 \section{Schlussfolgerungen}
+Nach dem Entscheid über die NoSQL Datenbank konnten wir erfolgreich eine Instanz
+von MongoDB aufsetzten. Zudem war es uns möglich per API der Datenbank über das
+Konsolenfenster Daten hinzuzufügen, zu ändern oder löschen. Die
+Robomongo\cite{Robomongo2016} Applikation ermöglichte es uns die Änderungen auf
+einfache Art zu kontrollieren. Nach dem Einarbeiten in die Syntax des Mongo-Java Treibers war es uns auch möglich Änderungen an der Datenbank von einem Javaprogramm aus vorzunehmen.
+\\\\
+Bei diesem Projekt ist uns klar geworden wie sehr sich NoSQL- von SQL-Datenbanken unterscheiden. Wir haben zwar schon vermehrt in der Theorie davon erfahren, allerdings ist es etwas ganz anderes dies in der Praxis zu erleben. Zudem ist es bei NoSQL Datenbanken viel wichtiger die Applikation sauber aufzubauen, da einem die API der Datenbank viel weniger Funktionen zur Verfügung stellt als beispielsweise bei einer SQL Abfragesprache. 
+\\\\
+MongoDB ist grundsätzlich sehr einfach installiert und es läuft sehr stabil. Auch die gebotene Abfragesprache ist nach einer kurzen Zeit sehr einfach und intuitiv. Grundsätzlich ist MongoDB im CP Bereich also Consistency und Partition-Tolerance angesiedelt. Die Möglichkeit auf Kosten der Consistency die Availability zu erhöhen macht sie zusätzlich für weitere Anwendungsgruppen sehr attraktiv. Die Datenbank verfügt über eine grosse Community, durch welche reichlich Hilfe bei Problemen zur Verfügung steht. Ausserdem ist sie auch sehr gut Dokumentiert.
+\\\\
+Sie verfügt aber auch über gewisse Nachteile. So ist sie zum Beispiel nicht für alle Anwendungstypen einer NoSQL Datenbank ausgestattet. Zudem ist sie nicht abgesichert wenn mehrere Benutzer gleichzeitig auf der Datenbank Änderungen vornehmen. Bei gewissen Szenarien ist es zudem von Vorteil wenn sauber referenziert werden kann. Dies ist bei MongoDB und auch allgemein bei NoSQL Datenbanken nicht immer ideal.
+\\\\
+Allgemein werden SQL Datenbanken häufiger in System verwenden, in denen die Konsistenz sehr hoch sein muss, wie zum Beispiel bei Banken oder auch Versicherungen. NoSQL Datenbanken werden dabei eher bei Datenmenge wie BigData oder auch bei grösseren WebServices eingesetzt. MongoDB speziell sollte bei Systemen zum Einsatz kommen, die eine hohe Daten Übereinstimmung bei den einzelnen Nodes und eine gute Ausfallsicherheit voraussetzen.
+
