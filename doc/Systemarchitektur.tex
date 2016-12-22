@@ -11,7 +11,7 @@
  visualisiert.
 \begin{figure}[htbp]
 	\centering
-    \includegraphics[width=1\textwidth]{./pictures/Architektur_MongoDB.png}
+    \includegraphics[width=0.9\textwidth]{./pictures/Architektur_MongoDB.png}
 	\caption{Architektur von MongoDB. \cite{Kaufmann2016_DB}}
 	\label{fig:archmong}
 \end{figure}
@@ -24,7 +24,7 @@
  Dokumente zugegriffen werden kann. Ist die Replica Set 1 mit der Verarbeitung
  einer Anfrage beschäftigt, kann gleichzeitig die Replica Set 2 die nächste
  Anfrage bearbeiten, sofern es sich bei der Anfrage um die in ihr gespeicherten
- Dokumente handelt. \\
+ Dokumente handelt. \\\\
  In RDBMS liegen die Tabellen in normalisierter Form vor. Daten die nicht
  funktional vom Primärschlüssel abhängen, werden als Fremdschlüssel
  referenziert. Die Referenzierung macht es schwierig, die Tabelle, in
@@ -43,7 +43,7 @@
  das referenzierte Tupel als Unterteil gespeichert wird. Dies im Gegensatz zur
  relationalen Datenbank. Bei dieser muss die Änderung nur an einem Ort
  stattfinden. MongoDB kennt keine Funktionlität zum Auflösen von Referenzen.
- Diese muss jeweils in der Applikation implementiert werden. \\
+ Diese muss jeweils in der Applikation implementiert werden. \\\\
  Da wie bereits erwähnt, alle Server auf einem physischen Rechner
  laufen, ist die Datenbank bei einem Systemausfall nicht mehr erreichbar.
 Bei einem Festplattenausfall kann es sogar passieren, dass die komplette

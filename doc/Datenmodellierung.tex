@@ -18,7 +18,7 @@ Beziehungen werden in RDBMS als Fremdschlüssel abgebildet. In MongoDB
 können Relationen in Form von Werten eines bestimmten Keys gespeichert werden.
 Komplex-Komplexe Beziehungen werden in RDBMS in eigene
 Tabellen ausgelagert. Daraus entstehen dann zwei Einfach-Komplexe
-Beziehungen. \\
+Beziehungen. \\\\
 Wie bereits erwähnt, muss das ER-Schema auch für die MongoDB umgeformt werden.
 Starke Entitäten werden als Collections abgebildet, schwache Entitäten werden 
 als Unterteil in das dazugehörige Dokument eingebettet. Komplex-Komplexe 
@@ -34,7 +34,7 @@ ersichtlich.
 Eine Aggregation bedeutet, dass eine schwache Entität als Unterteil abgebildet
 wird. Eine Assoziation bedeutet, dass eine starke Entität  als Referenz
 abgebildet wird. In MongoDB wird die ID des Referenzierten Dokuments als Wert gespeichert.
-\\
+\\\\
 Der folgenden JSON-Code zeigt ein Beispiel wie eine starke Entität
 in MongoDB abgespeichert wird. Das Code-Beispiel zeigt das Dokument eines
 Studenten. Die Vorlesungen, welcher dieser Student hört, werden im Werte Array
