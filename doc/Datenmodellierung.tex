@@ -5,7 +5,7 @@ verwaltet werden. So kann zum Beispiel ein Tupel einer relationalen Datenbank
 als Dokument in der dokumentorientierten Datenbank abgebildet werden. Die
 Attribute und die dazugehörigen Werte werden dabei in Schlüssel-Wert Paare
 abgebildet. 
-
+\\\\
 Unserem Projekt liegt das ER-Schema aus Abbildung \ref{fig:uni-db}
 zugrunde.
 Da MongoDB eine NoSQL und keine relationale Datenbank ist, kann das ER-Schema nicht direkt
@@ -26,27 +26,24 @@ Das Schema der NoSQL Datenbank sieht wie folgt aus:
 	\caption{ER-Diagramm zur Uni-DB der NoSQL Datenbank}
 	\label{fig:uni-dbNoSQL}
 \end{figure}
-
+\noindent
 Eine Komposition bedeutet, dass zum Beispiel in der NoSQL Datenbank als ``teil von''
 abgebildet wird. Eine Aggregation bedeutet, dass diese in Beziehung  als
 Referenz abgebildet wird.
-
+\\\\
 In der SQL-Datenbank wird die Komplex-Komplex-Beziehung zwischen Vorlesungen und Studenten als eigene Tabelle abgebildet. In der NoSQL-Datenbank wird diese Beziehung in der Studenten collection gespeichert. Dies wird in Form eines Arrays realisiert.
 
 \newpage
 \noindent
 Anbei noch ein Beispiel wie ein Student in der aufgesetzten MongoDB nach vorgegebenen ER-Diagramm abgespeichert ist:
-\begin{figure} [h]
-	\begin{verbatim} 
-	{
-		"Legi": 25403,
-		"Name" : "Jonas",
-		"Semester" : 12,
-		"Hören" : [5032, 1910],
-	}
-	\end{verbatim}
-	\label{cod:vorlesung}
-\end{figure}
+\begin{lstlisting}[basicstyle=\scriptsize]
+{
+	"Legi": 25403,
+	"Name" : "Jonas",
+	"Semester" : 12,
+	"Hoeren" : [5032, 1910],
+}
+\end{lstlisting}
 
 
 

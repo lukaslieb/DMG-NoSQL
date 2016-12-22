@@ -5,13 +5,14 @@
  wie die Daten strukturiert sein müssen. Zum Beispiel wird festgelegt, welches
  der Primärschlüssel ist, ob Felder ``null'' sein dürfen oder ob Tupel gelöscht
  werden dürfen wenn noch Referenzen darauf zeigen.
- 
+ \\\\
  MongoDB ist Schema frei. Das bedeutet, dass sich je zwei Dokumente in einer
  Sammlung  komplett in ihrer Struktur voneinander unterscheiden können.
  Des Weiteren garantiert MongoDB keine Integrität der Referenzen. Dieser Umstand
  wird klar, wenn verglichen wird, welchen Regeln relationale Datenbanken und
  die MognoDB unterliegen.
- 
+ \\\\
+ \noindent
  RDBMS unterliegen den ACID Regeln:
  \begin{itemize}
    \item Atomar: Die gesamte Transaktion wird ausgeführt oder die Transaktion
@@ -30,7 +31,7 @@
    \item Eventually Consistent: Die Konsistenz der Daten wird nicht unmittelbar
    nach der Operation gewährleistet. Sie kann verzögert eintreten.
 \end{itemize}
-
+\noindent
 Da MongoDB keine Transaktionen (eine Folge von Operationen, die Atomar
 ausgeführt werden) unterstützt, muss diese Funktionalität auf der
 Anwendungsebene implementiert werden. Dies ist beim Einsatz eines RDBMS nicht

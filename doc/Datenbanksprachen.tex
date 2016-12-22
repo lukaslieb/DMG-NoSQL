@@ -2,7 +2,7 @@
 \label{kap:Datenbanksprachen}
  
 MongoDB bietet verschiedene Möglichkeiten um Daten hinzuzufügen oder zu manipulieren. So können Dokumente beispielsweise über die Kommandozeile hinzugefügt werden. Zudem gibt es für viele Programmiersprachen einen Treiber, der in das jeweilige Projekt eingebunden werden kann. 
- 
+\\\\
 Da für diese Arbeit ein Programm in Java geschrieben wurde, kam der aktuelle mongo-java-driver in der Version 3.4.0 zum Einsatz. Allerdings sind die Kommandos für die Interaktion mit den Daten nicht sehr unterschiedlich zum normalen Kommandofenster. Nach der Wahl der Datenbank kann im Java Treiber  die entsprechende Collection ausgewählt und dieser anschliessend Dokumente hinzugefügt werden:
  
 \begin{lstlisting}[basicstyle=\scriptsize]
@@ -16,11 +16,11 @@ studs.insertOne(new Document("Legi", 25403)
 	.append("Hoeren", 5022));
 mongo.close();
 \end{lstlisting}
-
+\noindent
 So wurde für die Testdaten ein Javaprogramm erstellt, dass alle Daten der UniDB in entsprechende Collections der MongoDB schreibt.
-
+\\\\
 Für die in der Einführung bereits erwähnten Querry, wurde eine separate Funktion geschrieben, welche die Daten aus der Datenbank holt und aneinanderhängt. Der Join wird bei den zwei for-Schleifen ausgeführt. Darin wird für jeden Professor nachgeschlagen, welche Vorlesungen dieser hält. Anhand dieser wird die Anzahl SWS Punkte ermittelt, die der Professor unterrichtet. In der zweiten for-Schleife wird zusätzlich gezählt, wie viele Studenten dieser Vorlesungen zuhören. Die Selektion wird hier bei der Setzung der Anzahl SWS und Studenten zur Liste aller Professoren ausgeführt (p.setAnzSWS(swsCounter) und p.setAnzStud(studCounter)). 
-
+\\\\
 \begin{lstlisting}[basicstyle=\scriptsize]
 MongoClient mongo = new MongoClient( "localhost" , 27017 );
 MongoDatabase database = mongo.getDatabase("unidb");
@@ -42,7 +42,7 @@ for (Professor p: professoren){
 	p.setAnzStud(studCounter);
 }
 \end{lstlisting}
- 
+\noindent
 Wenn die Query in MySQL ausgeführt wird, werden als Resultat die Anzahl Studenten und die Summe der SWS für jeden Professor angezeigt:
 
 \begin{figure}[h] 
@@ -53,6 +53,7 @@ Wenn die Query in MySQL ausgeführt wird, werden als Resultat die Anzahl Student
 \end{figure}
 
 \newpage
+\noindent
 Beim Javacode wird diese eine Tabelle angezeigt und mit einem Click auf den
 Search Students Knopf wird besagte Funktion oben ausgeführt und die Tabelle
 aktualisiert.

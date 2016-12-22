@@ -9,12 +9,12 @@
  also die Metadaten über die Dokumentenverteilung in den Replica Sets.
  In der Abbildung \ref{fig:archmong} ist die Architektur von MongoDB
  visualisiert.
- \begin{figure}[htbp]
- \centering
-    \includegraphics[width=1\textwidth]{./pictures/Architektur_MongoDB.png}
- \caption{Architektur von MongoDB. \cite{Kaufmann2016_DB}}
- \label{fig:archmong}
- \end{figure}
+% \begin{figure}[htbp]
+% \centering
+%    \includegraphics[width=1\textwidth]{./pictures/Architektur_MongoDB.png}
+% \caption{Architektur von MongoDB. \cite{Kaufmann2016_DB}}
+% \label{fig:archmong}
+% \end{figure}
  In der, in diesem Projekt eingesetzte, MongoDB Instanz laufen alle drei Server
  auf demselben physischen Rechner. Dies wurde so gewählt, da die Sammlungen an
  Dokumenten klein sind. Des Weiteren wird auch nur sporadisch auf die Daten
@@ -24,7 +24,7 @@
  Dokumente zugegriffen werden könnte. Ist die Replica Set 1 mit der Verarbeitung
  einer Anfrage beschäftigt, kann gleichzeitig die Replica Set 2 die nächste
  Anfrage bearbeiten, sofern es sich bei der Anfrage um die in ihr gespeicherten
- Dokumente handelt. \\
+ Dokumente handelt. \\\\
  In RDBMS liegen die Tabellen in normalisierter Form vor. Daten die nicht
  funktional vom Primärschlüssel abhängen, werden als Fremdschlüssel
  referenziert. Die Referenzierung macht es schwierig, die Tabelle, in
@@ -41,7 +41,7 @@
  Tupel zu ändern, da die Änderung bei allen Dokumenten gemacht werden muss, bei denen
  das referenzierte Tupel als Unterteil gespeichert wurde. Dies im Gegensatz zur
  relationalen Datenbank. Bei dieser muss die Änderung nur an einem Ort
- stattfinden. MongoDB kennt keine Funktionalität zum Auflösen von Referenzen, diese muss jeweils in der Applikation implementiert werden. \\
+ stattfinden. MongoDB kennt keine Funktionalität zum Auflösen von Referenzen, diese muss jeweils in der Applikation implementiert werden. \\\\
  Da wie bereits erwähnt, alle Server auf einem physischen Rechner
  laufen, ist die Datenbank bei einem Systemausfall nicht mehr erreichbar.
  Bei einem Festplattenausfall kann es sogar passieren, dass die komplette
