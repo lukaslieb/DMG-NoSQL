@@ -5,25 +5,6 @@ MongoDB ist eine Dokument orientierte Datenbank. Dabei werden die Daten in JSON
 abbilden zu können, muss das Schema umgeformt werden. Dies ist auch bei
 relationalen Datenbanken der Fall. In Abbildung \ref{fig:uni-db} ist das
 ER-Schema der uni-DB abgebildet. Dies ist die Ausgangslage für unser Projekt.
-MongoDB ist eine dokumentorientierte Datenbank. Dabei werden die Daten in Dokumenten verwaltet, die im JSON Format gespeichert werden. Das bedeutet, dass die Daten nicht relational
-verwaltet werden. So kann zum Beispiel ein Tupel einer relationalen Datenbank
-als Dokument in der dokumentorientierten Datenbank abgebildet werden. Die
-Attribute und die dazugehörigen Werte werden dabei in Schlüssel-Wert Paare
-abgebildet. 
-\\\\
-Unserem Projekt liegt das ER-Schema aus Abbildung \ref{fig:uni-db}
-zugrunde.
-Da MongoDB eine NoSQL und keine relationale Datenbank ist, kann das ER-Schema nicht direkt
-in dieser Form in der Datenbank abgebildet werden. 
-
-\begin{figure}[h] 
-	\centering
-		\includegraphics[width=1\textwidth]{./pictures/SQL-DB_ER_Diagramm_UNI-DB.png}
-	\caption{ER-Diagramm zur Uni-DB \cite{Kaufmann2016}}
-	\label{fig:uni-db}
-\end{figure}
-
-Das Schema der NoSQL Datenbank sieht wie folgt aus:
 \begin{figure}[h] 
 	\centering
 		\includegraphics[width=1\textwidth]{./pictures/NoSQL-DB_ER_Diagramm_UNI-DB.png}
@@ -40,21 +21,22 @@ Tabellen ausgelagert. Daraus entstehen dann zwei Einfach-Komplexe
 Beziehungen. \\
 Wie bereits erwähnt, muss das ER-Schema auch für die MongoDB umgeformt werden.
 Starke Entitäten werden als Collections abgebildet, schwache Entitäten werden 
-als Unterteil in das dazugehörige Dokument eingebettet.
+als Unterteil in das dazugehörige Dokument eingebettet. Komplex-Komplexe 
+Beziehungen werden auch im Schema für die MongoDB aufgespalten.
 Das Schema nach der Umformung ist in der Abbildung \ref{fig:uni-dbNoSQL}
 ersichtlich.
 \begin{figure}[h] 
 	\centering
-		\includegraphics[width=1\textwidth]{./pictures/todo.jpg}
+		\includegraphics[width=1\textwidth]{./pictures/MongoDB-Schema.png}
 	\caption{MongoDB Schema zur Uni-DB }
 	\label{fig:uni-dbNoSQL}
 \end{figure}
-Eine Komposition bedeutet, dass eine schwache Entität als Unterteil abgebildet
-wird. Eine Aggregation bedeutet, dass starke Entität  als Referenz abgebildet
-wird. In MongoDB wird die ID des Referenzierten Dokuments als Wert gepsiechert.
+Eine Aggregation bedeutet, dass eine schwache Entität als Unterteil abgebildet
+wird. Eine Assoziation bedeutet, dass eine starke Entität  als Referenz
+abgebildet wird. In MongoDB wird die ID des Referenzierten Dokuments als Wert gespeichert.
 \\
 Der folgenden JSON-Code zeigt ein Beispiel wie eine starke Entität
-in MognoDB abgespeichert wird. Das Code-Beispiel zeigt das Dokument eines
+in MongoDB abgespeichert wird. Das Code-Beispiel zeigt das Dokument eines
 Studenten. Die Vorlesungen, welcher dieser Student hört, werden im Werte Array
 des Schlüssels Hören abgespeichert. Die Werte entsprechen dabei der ID der
 Vorlesung.
