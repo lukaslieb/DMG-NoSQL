@@ -32,19 +32,13 @@ Eine Komposition bedeutet, dass z.B in der NoSQL Datenbank als ``teil von''
 abgebildet wird. Eine Aggregation bedeutet, dass diese in Beziehung  als
 Referenz abgebildet wird.
 
-Im ER-Diagramm wird zum Beispiel die Komplex-Komplexe-Beziehung zwischen 
-Vorlesungen und Studenten als eigene Tabelle abgebildet. In unserer Datenbank
-wird diese Beziehung in zwei einfach-komplexe Beziehungen abgebildet. Somit
-besitzen Studenten eine Einfach-Komplexe Beziehung zu den Vorlesungen.
-Diese Beziehung wird im JSON -Format im Feld Hören ersichtlich. Die vom
-Studenten besuchten Vorlesungen werden als Vorlesungsnummern in einem Array
-referenziert.
+In der SQL-Datenbank wird die Komplex-Komplex-Beziehung zwischen Vorlesungen und Studenten als eigene Tabelle abgebildet. In der NoSQL-Datenbank wird diese Beziehung in der Studenten collection gespeichert. Dies wird in Form eines Arrays realisiert.
 
 \newpage
 \noindent
 Anbei noch ein Beispiel wie ein Student in der aufgesetzten MongoDB nach vorgegebenen ER-Diagramm abgespeichert ist:
 \begin{figure} [h]
-	\begin{verbatim}
+	\begin{verbatim} 
 	{
 		"Legi": 25403,
 		"Name" : "Jonas",
