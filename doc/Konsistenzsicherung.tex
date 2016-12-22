@@ -7,9 +7,9 @@
  werden dürfen wenn noch Referenzen darauf zeigen.
  
  MongoDB ist Schema frei. Das bedeutet, dass sich je zwei Dokumente in einer
-Sammlung  komplett in ihrer Struktur voneinander unterscheiden können.
- Des weiteren garantiert MongoDB keine Integrität der Referenzen. Dieser Umstand
- wird klar, wenn man vergleicht, welchen Regeln die relationale Datenbank und
+ Sammlung  komplett in ihrer Struktur voneinander unterscheiden können.
+ Des Weiteren garantiert MongoDB keine Integrität der Referenzen. Dieser Umstand
+ wird klar, wenn verglichen wird, welchen Regeln relationale Datenbanken und
  die MognoDB unterliegen.
  
  RDBMS unterliegen den ACID Regeln:
@@ -31,12 +31,12 @@ Sammlung  komplett in ihrer Struktur voneinander unterscheiden können.
    nach der Operation gewährleistet. Sie kann verzögert eintreten.
 \end{itemize}
 
-Da MongoDB keine Transaktionen(eine Folge von Operationen, die Atomar
-ausgeführt werden)) unterstützt, muss diese Funktionalität auf der
+Da MongoDB keine Transaktionen (eine Folge von Operationen, die Atomar
+ausgeführt werden) unterstützt, muss diese Funktionalität auf der
 Anwendungsebene implementiert werden. Dies ist beim Einsatz eines RDBMS nicht
-notwendig, da dieses Transaktionen unterstützt. In unserem Fall werden keine
+notwendig, da dieses Transaktionen unterstützt. Im Falle dieses Projektes werden keine
 Transaktionen verwendet, da nur lesend auf die Daten zugegriffen wird.
-Da nur gelesen wird, und keine Daten geändert oder hinzugefügt/entfernt werden,
+Da keine Daten geändert oder hinzugefügt/entfernt werden,
 kann die Datenbank durch Operationen nicht in einen inkonsistenten Zustand
 überführt werden. Deswegen kann auch parallel auf die Daten zugegriffen
 werden, ohne die Konsistenz zu verlieren. Sollen zu einem späteren Zeitpunkt zur

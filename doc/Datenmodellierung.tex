@@ -1,7 +1,6 @@
 \section{Datenmodellierung}
 \label{kap:ERDiagramm}
-MongoDB ist eine dokumentorientierte Datenbank. Dabei werden die Daten in JSON
-ähnlichen Dokumenten verwaltet. Das bedeutet, dass die Daten nicht relational
+MongoDB ist eine dokumentorientierte Datenbank. Dabei werden die Daten in Dokumenten verwaltet, die im JSON Format gespeichert werden. Das bedeutet, dass die Daten nicht relational
 verwaltet werden. So kann zum Beispiel ein Tupel einer relationalen Datenbank
 als Dokument in der dokumentorientierten Datenbank abgebildet werden. Die
 Attribute und die dazugehörigen Werte werden dabei in Schlüssel-Wert Paare
@@ -20,7 +19,7 @@ in dieser Form in der Datenbank abgebildet werden.
 \end{figure}
 
 \newpage
-Das Schema unserer NoSQL Datenbank sieht wie folgt aus:
+Das Schema der NoSQL Datenbank sieht wie folgt aus:
 \begin{figure}[h] 
 	\centering
 		\includegraphics[width=1\textwidth]{./pictures/NoSQL-DB_ER_Diagramm_UNI-DB.png}
@@ -28,7 +27,7 @@ Das Schema unserer NoSQL Datenbank sieht wie folgt aus:
 	\label{fig:uni-dbNoSQL}
 \end{figure}
 
-Eine Komposition bedeutet, dass z.B in der NoSQL Datenbank als ``teil von''
+Eine Komposition bedeutet, dass zum Beispiel in der NoSQL Datenbank als ``teil von''
 abgebildet wird. Eine Aggregation bedeutet, dass diese in Beziehung  als
 Referenz abgebildet wird.
 

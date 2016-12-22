@@ -1,11 +1,11 @@
 \section{Einführung}
 
 \subsection{Aufgabenstellung}
-Ziel dieser Arbeit ist es, die Uni-DB, welche auf einem SQL Server liegt, in eine NoSQL-Datenbank zu implementieren. Dazu wird das ER-Schema der Uni-DB so umgezeichnet, dass es in der gewählten NoSQL-Datenbank abgebildet werden kann. Dieses Schema wird dann in der entsprechend gewählten Datenbank umgesetzt. Dazu migriert man die Daten aus der SQL- in die NoSQL-Datenbank.
+Ziel dieser Arbeit ist es, die Uni-DB, welche auf einem SQL Server liegt, in eine NoSQL-Datenbank zu implementieren. Dazu wird das ER-Schema der Uni-DB so umgezeichnet, dass es in der gewählten NoSQL-Datenbank abgebildet werden kann. Dieses Schema wird dann in der entsprechend gewählten Datenbank umgesetzt. Dazu werden die Daten aus der SQL- in die NoSQL-Datenbank migriert.
 Zusätzlich wird dem Benutzer eine Möglichkeit geboten, mit Hilfe eines GUI folgende SQL-Querry auf der MongoDB abzufragen:
 
 
-\lstinputlisting{sourcecode/SQLQuerry.cpp}
+\lstinputlisting{sourcecode/SQLQuerry.sql}
 %\begin{lstlisting}
 %select ProfessorName, AnzahlStudenten, SummeSWS 
 %from ( 
@@ -29,10 +29,10 @@ Zusätzlich wird dem Benutzer eine Möglichkeit geboten, mit Hilfe eines GUI fol
 
 \newpage
 \subsection{Datenbankauswahl}
-Bei der Auswahl der Datenbank haben wir uns für die MongoDB entschieden. Ausschlaggebend waren dabei folgende Gründe:
+Bei der Auswahl der Datenbank haben sich die Verfasser dieser Arbeit für die MongoDB entschieden. Ausschlaggebend waren dabei folgende Gründe:
 \begin{itemize}
-  \item Geeignet um unser Problem zu lösen.
-  \item Wird in der Praxis eingesetzt
+  \item Geeignet um die Aufgabenstellung zu lösen.
+  \item Wird in der Praxis oft eingesetzt
   \item Bekannt
   \item Gute Dokumentation
   \item Kostenlos
